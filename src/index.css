@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+a {
+  color: #000;
+  text-decoration: none }
+  a:hover {
+    text-decoration: underline;
+  }
+
+img {
+  width: 40px;
+  height: auto;
+}
+
+.container {
+  max-width: 1170px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  margin: 0 auto; }
+
+.btn {
+  background-color: #666;
+  color: #fff;
+  border: none;
+  outline: none;
+  padding: 3px 15px;
+  border-radius: 4px;
+  cursor: pointer; }
+  .btn.unactive {
+    pointer-events: none;
+    opacity: .1; }
+
+.nav ul {
+  display: flex;
+  padding: 0; }
+  .nav ul li {
+    list-style-type: none;
+    margin-right: 20px; }
+    .nav ul li:last-child {
+      margin-right: 0; }
+
+
+.fav .findBlock {
+  padding-bottom: 20px; }
+  .fav ul {
+    padding-left: 0; }
+    .fav ul li {
+      display: flex;
+      margin-bottom: 7px;
+      list-style-type: none; }
+      .fav ul li .name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 160px; }
+      .fav ul li .btn {
+        margin-left: 10px; }
+
+.search ul {
+  padding-left: 0;}
+  .search ul li {
+    display: flex;
+    margin-bottom: 10px;
+    list-style-type: none; }
+    ul li .name {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      width: 160px; }
+    .search ul li .btn {
+      margin-left: 10px; }
+
+.days {
+  display: flex;
+  flex-wrap: wrap; }
+  .days .part {
+    margin: 0 20px; }
