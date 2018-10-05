@@ -1,5 +1,6 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import Nav from "./Nav";
+import { Link } from 'react-router-dom';
 
 import { connect } from 'react-redux';
 
@@ -26,7 +27,7 @@ class Favorites extends Component {
         <ul>
         {this.props.cities.map((item, index) =>
             <li key={index}>
-              <div className="name">{item.name}</div>
+              <div className="name"><Link to={`/city/${item.woeid}`}>{item.name}</Link></div>
               <input type="submit" className="btn" value='Remove' woeid={`${item.id}`} id={`${item.id}`} name={`${item.name}`} onClick={this.removeCity.bind(this)} />
             </li>
             )}
