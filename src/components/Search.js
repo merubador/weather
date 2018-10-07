@@ -5,6 +5,11 @@ import { connect } from 'react-redux';
 import Nav from "./Nav";
 
 class Search extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.findCity();
+      }
     
     state = {
         cityList: [],
@@ -21,6 +26,10 @@ class Search extends React.Component {
               });
             this.showCity(); 
         }
+      }
+
+      findCity() {
+        this.props.onFindCity('');
       }
 
       addCity(e) {

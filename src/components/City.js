@@ -46,8 +46,8 @@ class City extends React.Component {
 
       showWeather = (e) => {
 
-        var weatherList = this.state.weatherData;
-        var listItems = weatherList.map((item, index) =>
+        let weatherList = this.state.weatherData;
+        let listItems = weatherList.map((item, index) =>
             <div key={index} className="part">
                 <div>{item.applicable_date}</div>
                 <img src={`https://www.metaweather.com/static/img/weather/${item.weather_state_abbr}.svg`} /><span>{item.weather_state_name}</span>

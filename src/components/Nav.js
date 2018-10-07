@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 
-const Nav = () => (
+class Nav extends Component {
+    render() {
+        return (
             <div className="nav">
                 <ul>
                     <li><Link to="/">Search</Link></li>
@@ -9,5 +11,7 @@ const Nav = () => (
                 </ul>
             </div>
         );
+    }
+}
 
 export default Nav;
