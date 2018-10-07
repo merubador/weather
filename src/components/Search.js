@@ -17,7 +17,7 @@ class Search extends React.Component {
 
       handleChange = async (e) => {
         this.setState({value: e.target.value});
-        var city = e.target.value;
+        let city = e.target.value;
         if(city != "") {
             const api_call = await fetch(`/api/location/search/?query=${city}`);
             const data = await api_call.json();
@@ -33,8 +33,8 @@ class Search extends React.Component {
       }
 
       addCity(e) {
-        var city = e.target.name;
-        var id = e.target.id;
+        let city = e.target.name;
+        let id = e.target.id;
         this.props.onAddCity(city, id);
       }
 

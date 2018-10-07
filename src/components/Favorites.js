@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class Favorites extends Component {
 
   removeCity(e) {
-    var city = e.target.id;
+    let city = e.target.id;
     this.props.onRemoveCity(city);
   }
 
