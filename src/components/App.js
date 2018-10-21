@@ -1,47 +1,47 @@
-import React, { Component } from "react";
-
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { 
-  BrowserRouter as Router,
-  Route,
-  Link 
-} from 'react-router-dom'
-
-import Main from "./Main";
+import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import Search from './Search';
+import Favorites from './Favorites';
+import { getCities } from '../actions/cities';
+import '../App.css';
 
 class App extends Component {
 
-  addCity(e) {
-    var city = e.target.name;
-    var id = e.target.value;
-    this.props.onAddCity(city, id);
+  componentWillMount() {
+    //this.props.onGetCities('z');
   }
 
   render() {
     return (
-      <div className="container">
-        <Main />
+      <div className="App">
+        <BrowserRouter>
+          <div>
+            <div>
+              <ul className="nav">
+                  <li><Link to="/">Search</Link></li>
+                  <li><Link to="/favorites">Favorites</Link></li>
+              </ul>
+            </div>
+            <Switch>
+              <Route exact path="/" component={Search} />
+              <Route path="/favorites" component={Favorites} />
+            </Switch>
+          </div>
+			  </BrowserRouter>
       </div>
     );
   }
-  } 
+}
 
 export default connect(
   state =>({
-    cities: state.cities.filter(city => city.name.includes(state.filterCity))
+    cities: state.cities
   }),
   dispatch => ({
-    onAddCity: (name, woeid) => {
-      const payload = {
-        id: Date.now().toString(),
-        name,
-        woeid
-      };
-      dispatch({type: 'ADD_CITY', payload});
-    },
-    onFindCity: (name) => {
-      dispatch({ type: 'FIND_CITY', payload: name });
+    onGetCities: (city) => {
+      dispatch(getCities(city));
     }
   })
 )(App);

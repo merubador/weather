@@ -1,12 +1,9 @@
 import { combineReducers } from 'redux';
-import { routerReduser } from 'react-router-redux';
 
 import cities from './cities';
-import filterCity from './filterCity';
-import search from './search';
+import favorites from './favorites';
 
 export default combineReducers({
-    cities,
-    filterCity,
-    search
+  cities,
+  favorites
 });
