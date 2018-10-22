@@ -4,15 +4,11 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import Favorites from './Favorites';
+import City from './City';
 import { getCities } from '../actions/cities';
 import '../App.css';
 
 class App extends Component {
-
-  componentWillMount() {
-    //this.props.onGetCities('z');
-  }
-
   render() {
     return (
       <div className="App">
@@ -27,6 +23,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Search} />
               <Route path="/favorites" component={Favorites} />
+              <Route path="/city/:number" component={City} />
             </Switch>
           </div>
 			  </BrowserRouter>

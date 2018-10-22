@@ -22,6 +22,10 @@
   color: #61dafb;
 }
 
+.btn {
+  cursor: pointer;
+}
+
 .nav {
   padding-left: 0;
 }
@@ -41,14 +45,29 @@
   text-align: left;
 }
 
-.cityList .btn {
-  cursor: pointer;
-}
-
 .cityList .unactive {
   pointer-events: none;
   opacity: .2;
 }
+
+.forecast {
+  display: flex;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.day {
+  margin: 0 20px;
+}
+
+.favorites li {
+  list-style-type: none;
+  display: flex;
+  justify-content: center; }
+  .favorites li .name {
+    width: 200px;
+    text-align: left;
+  }
 
 
 @keyframes App-logo-spin {

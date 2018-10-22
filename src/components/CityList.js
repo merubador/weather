@@ -1,67 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCities } from '../actions/cities';
 import { addCity } from '../actions/favorites';
 import '../App.css';
+import { getCityList } from '../selectors';
 
 class CityList extends Component {
 
-  showCities() {
-    if(this.props.cities.length === 0) {
-      return <div>Начните вводить город</div>;
-    }
-
-    let listItems = [];
-    
-    for (let city of this.props.cities) {
-      let unactive = false;
-
-      for (let favorite of this.props.favorites) {
-        if(city.woeid === favorite.woeid) {
-          unactive = true;
-          break;
-        }
-      }
-
-      unactive ? listItems.push(
-        <li key={city.woeid}>
-          <div className="cityName">{city.title}</div>
-          <div className="btn unactive" onClick={() => this.props.onAddCity(city.woeid)}>Добавить</div>
-        </li>
-      ) : listItems.push(
-        <li key={city.woeid}>
-          <div className="cityName">{city.title}</div>
-          <div className="btn" onClick={() => this.props.onAddCity(city.woeid)}>Добавить</div>
-        </li>
-      );
-    }
-      
-    return (
-      <ul className="cityList">{listItems}</ul>
-    );
-  }
-
   render() {
-    console.log(this.props);
+    const {cityList} = this.props;
+    console.log(cityList, 'city list');
     return (
-      <div>
-        {this.showCities()}
-      </div>
+      <ul>
+        {cityList.map((item, index) =>
+          {
+            return (
+              <li key={index}>
+                <h4 className="cityName">{item.title}</h4>
+                <button disabled={item.isActive} className="btn" onClick={() => this.props.onAddCity(item.woeid, item.title)}>Добавить</button>
+              </li>
+            )
+          }        
+        )}
+      </ul>
     );
   }
 }
 
 export default connect(
   state =>({
-    cities: state.cities,
-    favorites: state.favorites
+    cityList: getCityList(state)
   }),
   dispatch => ({
-    onGetCities: (city) => {
-      dispatch(getCities(city));
-    },
-    onAddCity: (woeid) => {
-      dispatch(addCity(woeid));
+      onAddCity: (woeid, name) => {
+      dispatch(addCity(woeid, name));
     }
   })
 )(CityList);
