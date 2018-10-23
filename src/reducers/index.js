@@ -1,12 +1,5 @@
 import { combineReducers } from 'redux';
 
-//import cities from './cities';
-// import favorites from './favorites';
-// import forecast from './forecast';
-// import filterCity from './filterCity';
-
-
-
 function cities(state = [], action) {
   if(action.type === 'FETCH_CITIES_SUCCESS') {
     return action.payload;
@@ -33,7 +26,7 @@ function favorites(state = [], action) {
   return state;
 }
 
-function forecast(state = [], action) {
+function forecast(state = {}, action) {
   if(action.type === 'GET_SOME_CITY') {
     return action.payload;
   }

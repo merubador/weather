@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCities} from '../actions/cities';
+import { getCities} from '../actions';
 import '../App.css';
 import CityList from './CityList'
 
@@ -8,6 +8,10 @@ class Search extends Component {
 
   handleChange = (e) => {
     this.props.onGetCities(e.target.value);
+  }
+
+  componentWillUnmount() {
+    this.props.onGetCities('');
   }
 
   render() {

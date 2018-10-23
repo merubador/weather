@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Search from './Search';
 import Favorites from './Favorites';
 import City from './City';
-import { getCities } from '../actions/cities';
+import { getCities } from '../actions';
 import '../App.css';
 
 class App extends Component {
@@ -14,17 +14,21 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            <div>
-              <ul className="nav">
-                  <li><Link to="/">Search</Link></li>
-                  <li><Link to="/favorites">Favorites</Link></li>
-              </ul>
+            <div className="header">
+              <div className="container"> 
+                <ul className="nav">
+                    <li><Link to="/">Search</Link></li>
+                    <li><Link to="/favorites">Favorites</Link></li>
+                </ul>
+              </div>
             </div>
-            <Switch>
-              <Route exact path="/" component={Search} />
-              <Route path="/favorites" component={Favorites} />
-              <Route path="/city/:number" component={City} />
-            </Switch>
+            <div className="container">
+              <Switch>
+                <Route exact path="/" component={Search} />
+                <Route path="/favorites" component={Favorites} />
+                <Route path="/city/:number" component={City} />
+              </Switch>
+            </div>
           </div>
 			  </BrowserRouter>
       </div>

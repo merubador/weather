@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeCity, findCity } from '../actions/favorites';
+import { removeCity, findCity } from '../actions';
 import { Link } from 'react-router-dom';
 import '../App.css';
 

@@ -1,43 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getSomeCity } from '../actions/forecast';
+import { getSomeCity } from '../actions';
 import '../App.css';
+import { getForecast } from '../selectors';
 
 class City extends Component {
 
   componentDidMount() {
-    this.props.onSomeCity(this.props.match.params.number);
+    const { onSomeCity, match:{ params: {number} }} = this.props;
+    onSomeCity(number);
   }
 
-  round(x){
-    const result = Math.round(x);
-    if(!isNaN(result)) {
-      return result;
-    } else {
-      return '';
-    }
-  }
-
-  showWeather() {
-    const listItems = this.props.forecast.map((item, key) => 
-      <div key={key} className="day">
-        <div>{item.applicable_date}</div>
-        <img src={`https://www.metaweather.com/static/img/weather/${item.weather_state_abbr}.svg`} alt="" /><span>{item.weather_state_name}</span>
-        <div><span>Max: </span>{this.round(item.max_temp)}</div>
-        <div><span>Min: </span>{this.round(item.min_temp)}</div>
-        <div><span>Humidity: </span>{this.round(item.max_temp)}</div>
-        <div><span>Wind speed: </span>{this.round(item.wind_speed)} mph</div>
-      </div>
-    );
-
-    return <div className="forecast">{listItems}</div>
+  componentWillUnmount() {
+    this.props.onClearSomeCity();
   }
 
   render() {
+    const { forecast } = this.props;
+    const cityWeather = forecast ? forecast.weather : [];
     return (
       <div>
-        <h1>City: </h1>
-        {this.showWeather()}
+        <h1>City: { forecast.title }</h1>
+        <div className="forecast">
+        {cityWeather ? 
+          cityWeather.map((item, key) =>
+            <div key={key} className="day">
+              <div>{item.applicable_date}</div>
+              <img src={`https://www.metaweather.com/static/img/weather/${item.weather_state_abbr}.svg`} alt="" /><span>{item.weather_state_name}</span>
+              <div><span>Max: </span>{item.max_temp}</div>
+              <div><span>Min: </span>{item.min_temp}</div>
+              <div><span>Humidity: </span>{item.max_temp}</div>
+              <div><span>Wind speed: </span>{item.wind_speed} mph</div>
+            </div>
+          ) : <h1>Preloader</h1>}
+        </div>
       </div>
     );
   }
@@ -45,11 +41,14 @@ class City extends Component {
 
 export default connect(
   state =>({
-    forecast: state.forecast
+    forecast: getForecast(state)
   }),
   dispatch => ({
     onSomeCity: (woeid) => {
       dispatch(getSomeCity(woeid));
+    },
+    onClearSomeCity: () => {
+      dispatch({type: 'GET_SOME_CITY', payload: {}});
     }
   })
 )(City);
