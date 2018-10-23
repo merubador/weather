@@ -5,20 +5,8 @@ import { Link } from 'react-router-dom';
 import '../App.css';
 
 class Favorites extends Component {
-
-  componentDidMount() {
+  componentWillUnmount() {
     this.props.onFindCity('');
-  }
-
-  showFavorites() {
-    const listItems = this.props.favorites.map((item, key) =>
-    <li key={key}>
-      <div className="name"><Link to={`/city/${item.woeid}`}>{item.name}</Link></div>
-      <div className="btn" onClick={() => this.props.onRemoveCity(item.woeid)}>Remove</div>
-    </li>
-    );
-
-    return <ul className="favorites">{listItems}</ul>;
   }
 
   handleChange = (e) => {
@@ -26,11 +14,19 @@ class Favorites extends Component {
   }
 
   render() {
+    const { favorites } = this.props;
     return (
       <div>
         <h1>Favorites</h1>
         <input type="text" onChange={this.handleChange} />
-        {this.showFavorites()}
+        <ul className="cityList">
+          {favorites.map((item, key) =>
+            <li key={key}>
+              <h4 className="name"><Link to={`/city/${item.woeid}`}>{item.name}</Link></h4>
+              <button className="btn" onClick={() => this.props.onRemoveCity(item.woeid)}>Remove</button>
+            </li>
+          )}
+        </ul>
       </div>
     );
   }

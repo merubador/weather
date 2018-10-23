@@ -11,7 +11,7 @@ export const getCityList = state => {
     if(favoritesIds.includes(x.woeid)) {
       return {...x, isActive:true}
     }
-  
+    
     return x;
   })
 }

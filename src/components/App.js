@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import Favorites from './Favorites';
 import City from './City';
-import { getCities } from '../actions';
 import '../App.css';
 
 class App extends Component {
@@ -22,12 +20,14 @@ class App extends Component {
                 </ul>
               </div>
             </div>
-            <div className="container">
-              <Switch>
-                <Route exact path="/" component={Search} />
-                <Route path="/favorites" component={Favorites} />
-                <Route path="/city/:number" component={City} />
-              </Switch>
+            <div className="main">
+              <div className="container">
+                <Switch>
+                  <Route exact path="/" component={Search} />
+                  <Route path="/favorites" component={Favorites} />
+                  <Route path="/city/:number" component={City} />
+                </Switch>
+              </div>
             </div>
           </div>
 			  </BrowserRouter>
@@ -36,13 +36,4 @@ class App extends Component {
   }
 }
 
-export default connect(
-  state =>({
-    cities: state.cities
-  }),
-  dispatch => ({
-    onGetCities: (city) => {
-      dispatch(getCities(city));
-    }
-  })
-)(App);
+export default App;

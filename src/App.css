@@ -2,6 +2,11 @@
   text-align: center;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 40vmin;
@@ -49,18 +54,26 @@
   margin-right: 15px;
 }
 
-.nav a {
+.nav li a {
   color: #fff;
+}
+
+.cityList {
+  padding-top: 50px;
+}
+
+.main {
+  padding-top: 30px;
 }
 
 .cityList li {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 }
 
-.cityList .cityName {
+.cityList .name {
   width: 200px;
   text-align: left;
 }
@@ -80,15 +93,11 @@
   margin: 0 20px;
 }
 
-.favorites li {
-  list-style-type: none;
-  display: flex;
-  justify-content: center; }
-  .favorites li .name {
-    width: 200px;
-    text-align: left;
-  }
-
+.day img {
+  width: 80px;
+  display: block;
+  margin: 5px auto; 
+}
 
 @keyframes App-logo-spin {
   from {

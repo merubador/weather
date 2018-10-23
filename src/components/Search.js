@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCities} from '../actions';
+import { fetchCities } from '../actions';
 import '../App.css';
-import CityList from './CityList'
+import CityList from './CityList';
+import { getCities } from '../selectors';
 
 class Search extends Component {
-
   handleChange = (e) => {
     this.props.onGetCities(e.target.value);
   }
@@ -27,11 +27,11 @@ class Search extends Component {
 
 export default connect(
   state =>({
-    cities: state.cities
+    getCities: getCities(state)
   }),
   dispatch => ({
     onGetCities: (city) => {
-      dispatch(getCities(city));
+      dispatch(fetchCities(city));
     }
   })
 )(Search);

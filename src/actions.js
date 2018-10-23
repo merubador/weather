@@ -1,4 +1,4 @@
-export const getCities = (city) => {
+export const fetchCities = (city) => {
   return dispatch => {
     if(city !== '') {
       fetch(`/api/location/search/?query=${city}`)

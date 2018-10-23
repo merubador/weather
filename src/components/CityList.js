@@ -12,14 +12,10 @@ class CityList extends Component {
     return (
       <ul className="cityList">
         {cityList.map((item, index) =>
-          {
-            return (
-              <li key={index}>
-                <h4 className="cityName"><Link to={`/city/${item.woeid}`}>{item.title}</Link></h4>
-                <button disabled={item.isActive} className="btn" onClick={() => this.props.onAddCity(item.woeid, item.title)}>Добавить</button>
-              </li>
-            )
-          }        
+          <li key={index}>
+            <h4 className="name"><Link to={`/city/${item.woeid}`}>{item.title}</Link></h4>
+            <button disabled={item.isActive} className="btn" onClick={() => this.props.onAddCity(item.woeid, item.title)}>Добавить</button>
+          </li>      
         )}
       </ul>
     );
@@ -31,7 +27,7 @@ export default connect(
     cityList: getCityList(state)
   }),
   dispatch => ({
-      onAddCity: (woeid, name) => {
+    onAddCity: (woeid, name) => {
       dispatch(addCity(woeid, name));
     }
   })
