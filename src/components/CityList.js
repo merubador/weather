@@ -1,26 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { addCity } from '../actions';
 import '../App.css';
 import { getCityList } from '../selectors';
-import { Link } from 'react-router-dom';
+import City from './City';
 
-class CityList extends Component {
+const CityList = ({cityList, onAddCity}) => 
+  <ul className="cityList">
+    {cityList.map((item, index) =>
+      <City key={index} onAddCity={onAddCity} item={item} index={index} />
+    )}
+  </ul>
 
-  render() {
-    const {cityList} = this.props;
-    return (
-      <ul className="cityList">
-        {cityList.map((item, index) =>
-          <li key={index}>
-            <h4 className="name"><Link to={`/city/${item.woeid}`}>{item.title}</Link></h4>
-            <button disabled={item.isActive} className="btn" onClick={() => this.props.onAddCity(item.woeid, item.title)}>Добавить</button>
-          </li>      
-        )}
-      </ul>
-    );
-  }
-}
 
 export default connect(
   state =>({

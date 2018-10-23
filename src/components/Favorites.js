@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeCity, findCity } from '../actions';
 import { Link } from 'react-router-dom';
+import { getFilteredList } from '../selectors';
 import '../App.css';
 
 class Favorites extends Component {
@@ -34,7 +35,7 @@ class Favorites extends Component {
 
 export default connect(
   state => ({
-    favorites: state.favorites.filter(favorites => favorites.name.toLowerCase().includes(state.filterCity))
+    favorites: getFilteredList(state)
   }),
   dispatch => ({
     onRemoveCity: (woeid) => {

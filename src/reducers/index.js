@@ -19,7 +19,7 @@ function favorites(state = [], action) {
   return state;
 }
 
- function filterCity(state = '', action) {
+ function filteredCity(state = '', action) {
   if(action.type === 'FIND_CITY') {
     return action.payload;
   }
@@ -37,5 +37,5 @@ export default combineReducers({
   cities,
   favorites,
   forecast,
-  filterCity
+  filteredCity
 });

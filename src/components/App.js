@@ -3,8 +3,8 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Search from './Search';
 import Favorites from './Favorites';
-import City from './City';
 import '../App.css';
+import CityForecast from './CityForecast';
 
 class App extends Component {
   render() {
@@ -25,7 +25,7 @@ class App extends Component {
                 <Switch>
                   <Route exact path="/" component={Search} />
                   <Route path="/favorites" component={Favorites} />
-                  <Route path="/city/:number" component={City} />
+                  <Route path="/city/:number" component={CityForecast} />
                 </Switch>
               </div>
             </div>
